@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKZ4GFL55N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WKZ4GFL55N');
+  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/app.css">
+
+  <!-- Primary Meta Tags -->
+  <title>統神端火鍋</title>
+  <meta name="title" content="統神端火鍋">
+  <meta name="description" content="統神端火鍋小遊戲，你能讓統神走多遠不跌倒?">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rogeraabbccdd.github.io/AsiaGodTone-Hotpot-Game">
+  <meta property="og:title" content="統神端火鍋">
+  <meta property="og:description" content="統神端火鍋小遊戲，你能讓統神走多遠不跌倒?">
+  <meta property="og:image" content="https://rogeraabbccdd.github.io/AsiaGodTone-Hotpot-Gameassets/assets/preview.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://rogeraabbccdd.github.io/AsiaGodTone-Hotpot-Game">
+  <meta property="twitter:title" content="統神端火鍋">
+  <meta property="twitter:description" content="統神端火鍋小遊戲，你能讓統神走多遠不跌倒?">
+  <meta property="twitter:image" content="https://rogeraabbccdd.github.io/AsiaGodTone-Hotpot-Gameassets/assets/preview.jpg">
+</head>
+<body>
+  <div id="app">
+    <div id="bg" :style="{backgroundImage: roadimg}"></div>
+    <div class="container w-100 h-100">
+      <div class="row mx-auto w-100 h-100" id="game">
+        <div class="col-12 mx-auto align-self-top"id="score">
+          <h1 class="text-white">{{ scoreText }}m</h1>
+        </div>
+        <div class="col-12 mx-auto align-self-center" id="hotpot" :style="{transform: `rotateZ(${angle}deg)`}">
+          <img id="hotpot-img" :src="gameimg">
+        </div>
+        <div class="col-12 mx-auto align-self-end" id="control">
+          <h1 class="text-white text-center">{{ Math.round((userinput-5)*10)/10 }}</h1>
+          <input type="range" class="form-range" v-model="userinput" min="0" max="10" step="0.1" :disabled="game !== 1">
+        </div>
+      </div>
+      <div class="row mx-auto align-items-center" id="title" v-if="game === 0">
+        <div class="col-12 text-white text-center">
+          <h1 class="display-1">統神端火鍋</h1>
+          <h3>
+            調整下方橫桿
+            <br>
+            讓統神維持平衡
+            <br>
+            <span class="text-danger">左右傾斜超過 50 度就會跌倒</span>
+          </h3>
+          <input type="button" value="開始遊戲" class="btn btn-success" @click="restart">
+        </div>
+      </div>
+      <div class="row mx-auto align-items-center" id="title" v-if="game === 2">
+        <div class="col-12 text-white text-center">
+          <h1 class="display-1">遊戲結束</h1>
+          <h1>距離: {{ scoreText }} 公尺</h1>
+          <input type="button" value="再玩一次" class="btn btn-success" @click="restart">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
