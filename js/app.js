@@ -5,6 +5,9 @@ const app = Vue.createApp({
     const audio1 = new Audio()
     const audio2 = new Audio()
 
+    audio1.volume = 0.3
+    audio2.volume = 0.3
+
     const angle = ref(0)
     const level = ref(0.1)
     // 0 = main
