@@ -2,11 +2,9 @@ const { ref, onMounted, watch, computed, reactive } = Vue
 
 const app = Vue.createApp({
   setup(context) {
-    const audio1 = new Audio()
-    const audio2 = new Audio()
+    const audio = new Audio()
 
-    audio1.volume = 0.3
-    audio2.volume = 0.3
+    audio.volume = 0.3
 
     const angle = ref(0)
     const level = ref(0.1)
@@ -24,13 +22,11 @@ const app = Vue.createApp({
       level.value = 0.1
       game.value = 1
 
-      audio1.pause()
-      audio1.currentTime = 0
-      audio2.pause()
-      audio2.currentTime = 0
-      audio1.src = './assets/bgm.mp3'
-      audio1.loop = true
-      audio1.play()
+      audio.pause()
+      audio.currentTime = 0
+      audio.src = './assets/bgm.mp3'
+      audio.loop = true
+      audio.play()
     }
 
     watch(angle, (value) => {
@@ -43,12 +39,9 @@ const app = Vue.createApp({
       if (game.value === 2) {
         angle.value = 0
 
-        audio1.src = './assets/fail.mp3'
-        audio1.loop = false
-        audio1.play()
-        audio2.src = './assets/itai.mp3'
-        audio2.loop = false
-        audio2.play()
+        audio.src = './assets/fail2.mp3'
+        audio.loop = false
+        audio.play()
       }
     })
 
