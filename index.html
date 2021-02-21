@@ -104,60 +104,59 @@
       <div class="mx-auto" id="gameover" v-if="game === 2">
         <div class="row align-contents-center content mx-auto align-content-center">
           <div class="col-12 text-white text-center">
-      <div class="row mx-auto align-items-center" ></div>
-        <div class="col-12 text-white text-center">
-          <h1 class="display-1">遊戲結束</h1>
-          <h1>距離: {{ scoreText }} 公尺</h1>
-          <div class="row justify-content-between">
-            <div class="col-4">
-              <button type="button" class="btn btn-primary w-100" value="橫桿" @click="control = 0" :class="{'border border-3': control === 0}">
-                <span class="material-icons">linear_scale</span>
-                <br>
-                橫桿
-              </button>
-            </div>
-            <div class="col-4">
-              <button type="button" class="btn btn-primary w-100" value="螢幕" @click="control = 1" :class="{'border border-3': control === 1}">
-                <span class="material-icons">mouse</span>
-                <br>
-                點按螢幕
-              </button>
+            <h1 class="display-1">遊戲結束</h1>
+            <h1>距離: {{ scoreText }} 公尺</h1>
+            <div class="row justify-content-between">
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="橫桿" @click="control = 0" :class="{'border border-3': control === 0}">
+                  <span class="material-icons">linear_scale</span>
+                  <br>
+                  橫桿
+                </button>
               </div>
-            <div class="col-4">
-              <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
-                <span class="material-icons">screen_rotation</span>
-                <br>
-                陀螺儀
-              </button>
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="螢幕" @click="control = 1" :class="{'border border-3': control === 1}">
+                  <span class="material-icons">mouse</span>
+                  <br>
+                  點按螢幕
+                </button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                  <span class="material-icons">screen_rotation</span>
+                  <br>
+                  陀螺儀
+                </button>
+              </div>
+              <div class="col-12 mt-3">
+                <p v-if="control === 0">
+                  調整螢幕下方的橫桿
+                </p>
+                <p v-if="control === 1">
+                  點擊螢幕或滑動滑鼠、手指
+                </p>
+                <p v-if="control === 2">
+                  左右傾斜裝置
+                </p>
+              </div>
             </div>
-            <div class="col-12 mt-3">
-              <p v-if="control === 0">
-                調整螢幕下方的橫桿
-              </p>
-              <p v-if="control === 1">
-                點擊螢幕或滑動滑鼠、手指
-              </p>
-              <p v-if="control === 2">
-                左右傾斜裝置
-              </p>
-            </div>
-          </div>
-          <br>
+            <br>
           <input type="button" value="再玩一次" class="btn btn-success" @click="restart">
-          <br>
-          <br>
-          <p>
-            &copy; {{ dateYear }}
-            Made with ❤ by 
-            <a target="_blank" href="https://github.com/rogeraabbccdd" class="text-white">Kento</a>
-          </p>
-          <br>
-          <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/fork">
-            <img class="mx-1" src="https://img.shields.io/github/forks/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
-          </a>
-          <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/stargazers">
-            <img class="mx-1" src="https://img.shields.io/github/stars/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
-          </a>
+            <br>
+            <br>
+            <p>
+              &copy; {{ dateYear }}
+              Made with ❤ by 
+              <a target="_blank" href="https://github.com/rogeraabbccdd" class="text-white">Kento</a>
+            </p>
+            <br>
+            <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/fork">
+              <img class="mx-1" src="https://img.shields.io/github/forks/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
+            </a>
+            <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/stargazers">
+              <img class="mx-1" src="https://img.shields.io/github/stars/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
+            </a>
+          </div>
         </div>
       </div>
     </div>
