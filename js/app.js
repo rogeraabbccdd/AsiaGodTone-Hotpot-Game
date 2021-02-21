@@ -60,7 +60,7 @@ const app = Vue.createApp({
 
     watch(mouse, value => {
       if (game.value === 1 && control.value === 1) {
-        userinput.value = (mouse.x - (window.innerWidth / 2)) / 100 + 5
+        userinput.value = mouse.x / window.innerWidth*10
       }
     })
 
