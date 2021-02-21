@@ -41,11 +41,13 @@ const app = Vue.createApp({
         audio.play()
         
         audio.onended = () => {
-          audio.src = './assets/bgm.mp3'
-          audio.currentTime = 0
-          audio.loop = true
-          audio.play()
-          audio.onended = null
+          if (game.value === 1) {
+            audio.src = './assets/bgm.mp3'
+            audio.currentTime = 0
+            audio.loop = true
+            audio.play()
+            audio.onended = null
+          }
         }
   
       } else {
