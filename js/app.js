@@ -2,6 +2,11 @@ const { ref, onMounted, watch, computed, reactive } = Vue
 const { useDeviceOrientation, useMouse } = VueUse
 
 const app = Vue.createApp({
+  data() {
+    return {
+      dateYear: (new Date()).getFullYear(),
+    };
+  },
   setup(context) {
     const audio = new Audio()
 
