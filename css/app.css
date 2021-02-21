@@ -6,6 +6,7 @@ html, body {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  user-select: none;
 }
 .content {
   max-width: 500px;
