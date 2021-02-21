@@ -23,18 +23,32 @@ const app = Vue.createApp({
     const mouse = reactive(useMouse())
     const device = reactive(useDeviceOrientation())
 
-    const restart = () => {
+    const restart = (retry) => {
       userinput.value = 5
       score.value = 0
       angle.value = 0
       level.value = 0.1
       game.value = 1
 
-      audio.pause()
-      audio.currentTime = 0
-      audio.src = './assets/bgm.mp3'
-      audio.loop = true
-      audio.play()
+      if (retry) {
+        audio.src = './assets/again.mp3'
+        audio.loop = false
+        audio.play()
+        
+        audio.onended = () => {
+          audio.src = './assets/bgm.mp3'
+          audio.currentTime = 0
+          audio.loop = true
+          audio.play()
+          audio.onended = null
+        }
+  
+      } else {
+        audio.currentTime = 0
+        audio.src = './assets/bgm.mp3'
+        audio.loop = true
+        audio.play()
+      }
     }
 
     watch(mouse, value => {
@@ -56,8 +70,8 @@ const app = Vue.createApp({
       }
     })
 
-    watch(game, (value) => {
-      if (game.value === 2) {
+    watch(game, (value, oldvalue) => {
+      if (value === 2) {
         angle.value = 0
 
         audio.src = './assets/fail2.mp3'
