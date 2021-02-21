@@ -67,7 +67,7 @@ const app = Vue.createApp({
     })
 
     watch(angle, (value) => {
-      if (value > 50 || value < -50) {
+      if (value > 60 || value < -60) {
         game.value = 2
       }
     })
