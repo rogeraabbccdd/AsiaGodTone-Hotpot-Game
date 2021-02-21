@@ -19,6 +19,9 @@ const app = Vue.createApp({
     // 1 = mouse
     // 2 = device
     const control = ref(0)
+    // 0 = old difficulty
+    // 1 = easy
+    const difficulty = ref(0)
 
     const mouse = reactive(useMouse())
     const device = reactive(useDeviceOrientation())
@@ -67,7 +70,10 @@ const app = Vue.createApp({
     })
 
     watch(angle, (value) => {
-      if (value > 60 || value < -60) {
+      if (
+        (difficulty.value === 0 && (value > 50 || value < -50)) ||
+        (difficulty.value === 1 && (value > 60 || value < -60))
+      ) {
         game.value = 2
       }
     })
@@ -103,8 +109,8 @@ const app = Vue.createApp({
           // wind
           level.value += score.value * 0.00001
           const positive = Math.random() > 0.5
-          const wind = Math.round(Math.random()*3)*level.value
-
+          const wind = difficulty.value === 0 ? Math.round(Math.random()*3)*level.value : Math.round(Math.random()*5)/10*level.value
+          
           // user input
           angle.value += userinput.value - 5
 
@@ -126,7 +132,8 @@ const app = Vue.createApp({
       control,
       mouse,
       device,
-      dateYear
+      dateYear,
+      difficulty
     }
   }
 }).mount('#app')
