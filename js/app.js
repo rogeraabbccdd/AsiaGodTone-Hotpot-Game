@@ -1,4 +1,5 @@
 const { ref, onMounted, watch, computed, reactive } = Vue
+const { useDeviceOrientation, useMouse } = VueUse
 
 const app = Vue.createApp({
   setup(context) {
@@ -14,6 +15,13 @@ const app = Vue.createApp({
     const game = ref(0)
     const score = ref(0)
     const userinput = ref(5)
+    // 0 = input range
+    // 1 = mouse
+    // 2 = device
+    const control = ref(0)
+
+    const mouse = reactive(useMouse())
+    const device = reactive(useDeviceOrientation())
 
     const restart = () => {
       userinput.value = 5
@@ -28,6 +36,19 @@ const app = Vue.createApp({
       audio.loop = true
       audio.play()
     }
+
+    watch(mouse, value => {
+      if (game.value === 1 && control.value === 1) {
+        userinput.value = (mouse.x - (window.innerWidth / 2)) / 100 + 5
+      }
+    })
+
+    watch(device, value => {
+      if (game.value === 1 && control.value === 2) {
+        const gamma = device.gamma <= -50.0 ? -50.0 : device.gamma >= 50.0 ? 50.0 : device.gamma
+        userinput.value = (gamma / 10) + 5
+      }
+    })
 
     watch(angle, (value) => {
       if (value > 50 || value < -50) {
@@ -79,14 +100,21 @@ const app = Vue.createApp({
 
     return {
       angle,
-      level,
       game,
       score,
       gameimg,
       roadimg,
       userinput,
       scoreText,
-      restart
+      restart,
+      control,
+      mouse,
+      device
     }
   }
 }).mount('#app')
+
+const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+const tooltipList = tooltipTriggerList.map((tooltipTriggerEl) => {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

@@ -7,13 +7,13 @@ html, body {
   object-fit: contain;
   object-position: center;
 }
-#game {
+.content {
   max-width: 500px;
   height: 100%;
   position: relative;
 }
 #control {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 #app {
   width: 100vw;
@@ -30,7 +30,7 @@ html, body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-#title {
+#title, #gameover {
   height: 100%;
   width: 100%;
   background-color: rgba(0,0,0,0.7);
@@ -46,4 +46,11 @@ html, body {
 }
 #score {
   margin-top: 20px;
+}
+.form-check-input {
+  margin-right: 0.5em !important;
+  float: none !important;
+}
+.fas {
+  z-index: -1;
 }
