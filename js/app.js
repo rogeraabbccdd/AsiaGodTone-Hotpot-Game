@@ -23,6 +23,8 @@ const app = Vue.createApp({
     const mouse = reactive(useMouse())
     const device = reactive(useDeviceOrientation())
 
+    const dateYear = ref(new Date().getFullYear())
+
     const restart = (retry) => {
       userinput.value = 5
       score.value = 0
@@ -123,7 +125,8 @@ const app = Vue.createApp({
       restart,
       control,
       mouse,
-      device
+      device,
+      dateYear
     }
   }
 }).mount('#app')
