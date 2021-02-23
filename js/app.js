@@ -73,8 +73,12 @@ const app = Vue.createApp({
 
     watch(angle, (value) => {
       if (
+        // 困難
         (difficulty.value === 0 && (value > 50 || value < -50)) ||
-        (difficulty.value === 1 && (value > 60 || value < -60))
+        // 簡單
+        (difficulty.value === 1 && (value > 60 || value < -60)) ||
+        // 超級簡單
+        (difficulty.value === 2 && (value > 1080 || value < -1080))
       ) {
         game.value = 2
       }
