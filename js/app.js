@@ -21,6 +21,7 @@ const app = Vue.createApp({
     const control = ref(0)
     // 0 = old difficulty
     // 1 = easy
+    // 2 = very easy
     const difficulty = ref(0)
 
     const mouse = reactive(useMouse())
