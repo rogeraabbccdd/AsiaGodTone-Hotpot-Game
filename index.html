@@ -61,10 +61,9 @@
               讓統神維持平衡
               <br>
               <span class="text-danger">
-                左右傾斜超過
-                <span v-if="difficulty === 0"> 50 </span>
-                <span v-else-if="difficulty === 1"> 60 </span>
-                度就會跌倒
+                <span v-if="difficulty === 0">左右傾斜超過 50 度就會跌倒</span>
+                <span v-else-if="difficulty === 1">左右傾斜超過 60 度就會跌倒</span>
+                <span v-else-if="difficulty === 2">轉 3 圈就會跌倒</span>
               </span>
             </h3>
             <div class="row justify-content-between">
@@ -101,7 +100,8 @@
                 </p>
               </div>
               <div class="col-12">
-                <input type="button" value="簡單" class="btn btn-success" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
+                <input type="button" value="超級簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
+                <input type="button" value="簡單" class="btn btn-primary" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
                 <input type="button" value="困難" class="btn btn-danger" @click="difficulty = 0" :class="{'border border-3': difficulty === 0, 'mx-2': true}">
               </div>
             </div>
@@ -149,7 +149,8 @@
                 </p>
               </div>
               <div class="col-12">
-                <input type="button" value="簡單" class="btn btn-success" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
+                <input type="button" value="非常簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
+                <input type="button" value="簡單" class="btn btn-primary" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
                 <input type="button" value="困難" class="btn btn-danger" @click="difficulty = 0" :class="{'border border-3': difficulty === 0, 'mx-2': true}">
               </div>
             </div>
