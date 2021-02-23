@@ -61,10 +61,9 @@
               讓統神維持平衡
               <br>
               <span class="text-danger">
-                左右傾斜超過
-                <span v-if="difficulty === 0"> 50 </span>
-                <span v-else-if="difficulty === 1"> 60 </span>
-                度就會跌倒
+                <span v-if="difficulty === 0">左右傾斜超過 50 度就會跌倒</span>
+                <span v-else-if="difficulty === 1">左右傾斜超過 60 度就會跌倒</span>
+                <span v-else-if="difficulty === 2">轉 3 圈就會跌倒</span>
               </span>
             </h3>
             <div class="row justify-content-between">
