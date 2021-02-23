@@ -149,7 +149,8 @@
                 </p>
               </div>
               <div class="col-12">
-                <input type="button" value="簡單" class="btn btn-success" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
+                <input type="button" value="非常簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
+                <input type="button" value="簡單" class="btn btn-primary" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
                 <input type="button" value="困難" class="btn btn-danger" @click="difficulty = 0" :class="{'border border-3': difficulty === 0, 'mx-2': true}">
               </div>
             </div>
