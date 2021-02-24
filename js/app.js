@@ -1,6 +1,8 @@
 const { ref, onMounted, watch, computed, reactive } = Vue
 const { useDeviceOrientation, useMouse } = VueUse
 
+const valueAbsRange = (value, range) => Math.abs(value) >= range
+
 const app = Vue.createApp({
   setup(context) {
     const audio = new Audio()
@@ -26,8 +28,13 @@ const app = Vue.createApp({
 
     const mouse = reactive(useMouse())
     const device = reactive(useDeviceOrientation())
-
     const dateYear = ref(new Date().getFullYear())
+    const playAudio = (audio, src, repeat = false) => {
+      audio.currentTime = 0
+      audio.src = src
+      audio.loop = repeat
+      audio.play()
+    }
 
     const restart = (retry) => {
       userinput.value = 5
@@ -37,25 +44,17 @@ const app = Vue.createApp({
       game.value = 1
 
       if (retry) {
-        audio.src = './assets/again.mp3'
-        audio.loop = false
-        audio.play()
+        playAudio('./assets/again.mp3')
         
         audio.onended = () => {
           if (game.value === 1) {
-            audio.src = './assets/bgm.mp3'
-            audio.currentTime = 0
-            audio.loop = true
-            audio.play()
-            audio.onended = null
+            playAudio('./assets/bgm.mp3', true)
+            audio.onended = undefined
           }
         }
   
       } else {
-        audio.currentTime = 0
-        audio.src = './assets/bgm.mp3'
-        audio.loop = true
-        audio.play()
+        playAudio('./assets/bgm.mp3', true)
       }
     }
 
@@ -75,11 +74,11 @@ const app = Vue.createApp({
     watch(angle, (value) => {
       if (
         // 困難
-        (difficulty.value === 0 && (value > 50 || value < -50)) ||
+        (difficulty.value === 0 && valueAbsRange(value, 50) ||
         // 簡單
-        (difficulty.value === 1 && (value > 60 || value < -60)) ||
+        (difficulty.value === 1 && valueAbsRange(value, 60) ||
         // 超級簡單
-        (difficulty.value === 2 && (value > 1080 || value < -1080))
+        (difficulty.value === 2 && valueAbsRange(value, 1080))
       ) {
         game.value = 2
       }
@@ -100,11 +99,11 @@ const app = Vue.createApp({
     })
 
     const roadimg = computed(() => {
-      return game.value < 2? 'url(./assets/road.gif)' : 'url(./assets/road.jpg)'
+      return game.value < 2 ? 'url(./assets/road.gif)' : 'url(./assets/road.jpg)'
     })
 
     const scoreText = computed(() => {
-      return Math.round(score.value*10)/100
+      return Math.round(score.value * 10) / 100
     })
 
     onMounted(() => {
