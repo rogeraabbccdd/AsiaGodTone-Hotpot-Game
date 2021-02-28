@@ -74,9 +74,9 @@ const app = Vue.createApp({
     watch(angle, (value) => {
       if (
         // 困難
-        (difficulty.value === 0 && valueAbsRange(value, 50) ||
+        (difficulty.value === 0 && valueAbsRange(value, 50)) ||
         // 簡單
-        (difficulty.value === 1 && valueAbsRange(value, 60) ||
+        (difficulty.value === 1 && valueAbsRange(value, 60)) ||
         // 超級簡單
         (difficulty.value === 2 && valueAbsRange(value, 1080))
       ) {
