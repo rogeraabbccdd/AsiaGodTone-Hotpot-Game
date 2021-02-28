@@ -57,7 +57,7 @@
       <div class="mx-auto" id="title" v-if="game === 0">
         <div class="row align-contents-center content mx-auto align-content-center">
           <div class="col-12 text-white text-center">
-            <h1 class="display-1">統神端火鍋<div id='aaaaaaaa'>none</div></h1>
+            <h1 class="display-1">統神端火鍋</h1>
             <h3>
               讓統神維持平衡
               <br>
@@ -184,14 +184,14 @@
   <script src="./js/app.js"></script>
   <script>
     
-    document.getElementById('aaaaaaaa').innerText = '???'
+
     document.getElementById('gyroscope1').addEventListener('click', function () {
-      alert('???')
-      //document.getElementById('aaaaaaaa').innerText = 'iOS 13'
+
+      
         DeviceOrientationEvent.requestPermission().then(response => {
             // This is showing "denied" without showing any permission popup
             console.log(response)
-            document.getElementById('aaaaaaaa').innerText = response
+            
 
         }).catch(console.error)
     });
