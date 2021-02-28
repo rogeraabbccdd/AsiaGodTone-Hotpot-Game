@@ -9,6 +9,7 @@
     gtag('js', new Date());
 
     gtag('config', 'G-WKZ4GFL55N');
+
   </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +57,7 @@
       <div class="mx-auto" id="title" v-if="game === 0">
         <div class="row align-contents-center content mx-auto align-content-center">
           <div class="col-12 text-white text-center">
-            <h1 class="display-1">統神端火鍋</h1>
+            <h1 class="display-1">統神端火鍋<div id='aaaaaaaa'>none</div></h1>
             <h3>
               讓統神維持平衡
               <br>
@@ -82,7 +83,7 @@
                 </button>
                 </div>
               <div class="col-4">
-                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                <button type="button" id="gyroscope1" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
                   <span class="material-icons">screen_rotation</span>
                   <br>
                   陀螺儀
@@ -131,7 +132,7 @@
                 </button>
               </div>
               <div class="col-4">
-                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2;window.alert('????')" :class="{'border border-3': control === 2}">
                   <span class="material-icons">screen_rotation</span>
                   <br>
                   陀螺儀
@@ -162,6 +163,7 @@
               &copy; {{ dateYear }}
               Made with ❤ by 
               <a target="_blank" href="https://github.com/rogeraabbccdd" class="text-white">Kento</a>
+              
             </p>
             <br>
             <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/fork">
@@ -180,5 +182,20 @@
   <script src="https://unpkg.com/@vueuse/shared"></script>
   <script src="https://unpkg.com/@vueuse/core"></script>
   <script src="./js/app.js"></script>
+  <script>
+    
+    document.getElementById('aaaaaaaa').innerText = '???'
+    document.getElementById('gyroscope1').addEventListener('click', function () {
+      alert('???')
+      //document.getElementById('aaaaaaaa').innerText = 'iOS 13'
+        DeviceOrientationEvent.requestPermission().then(response => {
+            // This is showing "denied" without showing any permission popup
+            console.log(response)
+            document.getElementById('aaaaaaaa').innerText = response
+
+        }).catch(console.error)
+    });
+
+</script>
 </body>
 </html>
