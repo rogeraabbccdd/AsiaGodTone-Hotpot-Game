@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKZ4GFL55N"></script>
@@ -14,6 +14,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="./css/app.css">
 
   <!-- Primary Meta Tags -->
@@ -39,8 +40,8 @@
 <body>
   <div id="app">
     <div id="bg" :style="{backgroundImage: roadimg}"></div>
-    <div class="container w-100 h-100">
-      <div class="row mx-auto w-100 h-100" id="game">
+    <div class="container w-100 h-100" id="game">
+      <div class="row mx-auto w-100 h-100 content" ref="gamediv">
         <div class="col-12 mx-auto align-self-top"id="score">
           <h1 class="text-white">{{ scoreText }}m</h1>
         </div>
@@ -49,40 +50,135 @@
         </div>
         <div class="col-12 mx-auto align-self-end" id="control">
           <h1 class="text-white text-center">{{ Math.round((userinput-5)*10)/10 }}</h1>
-          <input type="range" class="form-range" v-model="userinput" min="0" max="10" step="0.1" :disabled="game !== 1">
+          <input type="range" class="form-range" v-model="userinput" min="0" max="10" step="0.1" :disabled="game !== 1" v-if="control === 0">
         </div>
       </div>
-      <div class="row mx-auto align-items-center" id="title" v-if="game === 0">
-        <div class="col-12 text-white text-center">
-          <h1 class="display-1">統神端火鍋</h1>
-          <h3>
-            調整下方橫桿
+      <div class="mx-auto" id="title" v-if="game === 0">
+        <div class="row align-contents-center content mx-auto align-content-center">
+          <div class="col-12 text-white text-center">
+            <h1 class="display-1">統神端火鍋</h1>
+            <h3>
+              讓統神維持平衡
+              <br>
+              <span class="text-danger">
+                <span v-if="difficulty === 0">左右傾斜超過 50 度就會跌倒</span>
+                <span v-else-if="difficulty === 1">左右傾斜超過 60 度就會跌倒</span>
+                <span v-else-if="difficulty === 2">轉 3 圈就會跌倒</span>
+              </span>
+            </h3>
+            <div class="row justify-content-between">
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="橫桿" @click="control = 0" :class="{'border border-3': control === 0}">
+                  <span class="material-icons">linear_scale</span>
+                  <br>
+                  橫桿
+                </button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="螢幕" @click="control = 1" :class="{'border border-3': control === 1}">
+                  <span class="material-icons">mouse</span>
+                  <br>
+                  點按螢幕
+                </button>
+                </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                  <span class="material-icons">screen_rotation</span>
+                  <br>
+                  陀螺儀
+                </button>
+              </div>
+              <div class="col-12 mt-3">
+                <p v-if="control === 0">
+                  調整螢幕下方的橫桿
+                </p>
+                <p v-if="control === 1">
+                  點擊螢幕或滑動滑鼠、手指
+                </p>
+                <p v-if="control === 2">
+                  左右傾斜裝置
+                </p>
+              </div>
+              <div class="col-12">
+                <input type="button" value="超級簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
+                <input type="button" value="簡單" class="btn btn-primary" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
+                <input type="button" value="困難" class="btn btn-danger" @click="difficulty = 0" :class="{'border border-3': difficulty === 0, 'mx-2': true}">
+              </div>
+            </div>
             <br>
-            讓統神維持平衡
-            <br>
-            <span class="text-danger">左右傾斜超過 50 度就會跌倒</span>
-          </h3>
-          <input type="button" value="開始遊戲" class="btn btn-success" @click="restart">
+            <input type="button" value="開始遊戲" class="btn btn-success" @click="restart(false)">
+          </div>
         </div>
       </div>
-      <div class="row mx-auto align-items-center" id="title" v-if="game === 2">
-        <div class="col-12 text-white text-center">
-          <h1 class="display-1">遊戲結束</h1>
-          <h1>距離: {{ scoreText }} 公尺</h1>
-          <input type="button" value="再玩一次" class="btn btn-success" @click="restart">
-          <br>
-          <br>
-          <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/fork">
-            <img class="mx-1" src="https://img.shields.io/github/forks/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
-          </a>
-          <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/stargazers">
-            <img class="mx-1" src="https://img.shields.io/github/stars/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
-          </a>
+      <div class="mx-auto" id="gameover" v-if="game === 2">
+        <div class="row align-contents-center content mx-auto align-content-center">
+          <div class="col-12 text-white text-center">
+            <h1 class="display-1">遊戲結束</h1>
+            <h1>距離: {{ scoreText }} 公尺</h1>
+            <div class="row justify-content-between">
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="橫桿" @click="control = 0" :class="{'border border-3': control === 0}">
+                  <span class="material-icons">linear_scale</span>
+                  <br>
+                  橫桿
+                </button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="螢幕" @click="control = 1" :class="{'border border-3': control === 1}">
+                  <span class="material-icons">mouse</span>
+                  <br>
+                  點按螢幕
+                </button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                  <span class="material-icons">screen_rotation</span>
+                  <br>
+                  陀螺儀
+                </button>
+              </div>
+              <div class="col-12 mt-3">
+                <p v-if="control === 0">
+                  調整螢幕下方的橫桿
+                </p>
+                <p v-if="control === 1">
+                  點擊螢幕或滑動滑鼠、手指
+                </p>
+                <p v-if="control === 2">
+                  左右傾斜裝置
+                </p>
+              </div>
+              <div class="col-12">
+                <input type="button" value="超級簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
+                <input type="button" value="簡單" class="btn btn-primary" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
+                <input type="button" value="困難" class="btn btn-danger" @click="difficulty = 0" :class="{'border border-3': difficulty === 0, 'mx-2': true}">
+              </div>
+            </div>
+            <br>
+            <input type="button" value="再玩一次" class="btn btn-success" @click="restart(true)">
+            <br>
+            <br>
+            <p>
+              &copy; {{ dateYear }}
+              Made with ❤ by 
+              <a target="_blank" href="https://github.com/rogeraabbccdd" class="text-white">Kento</a>
+            </p>
+            <br>
+            <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/fork">
+              <img class="mx-1" src="https://img.shields.io/github/forks/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
+            </a>
+            <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/stargazers">
+              <img class="mx-1" src="https://img.shields.io/github/stars/rogeraabbccdd/AsiaGodTone-Hotpot-Game?style=social">
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/@vueuse/shared"></script>
+  <script src="https://unpkg.com/@vueuse/core"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>

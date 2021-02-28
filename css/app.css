@@ -1,25 +1,31 @@
 html, body { 
   height: 100% 
 }
+
 #hotpot-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
+  user-select: none;
 }
-#game {
+
+.content {
   max-width: 500px;
   height: 100%;
   position: relative;
 }
+
 #control {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
+
 #app {
   width: 100vw;
   height: 100%;
   overflow: hidden;
 }
+
 #bg {
   width: 100%;
   height: 100%;
@@ -30,7 +36,8 @@ html, body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-#title {
+
+#title, #gameover {
   height: 100%;
   width: 100%;
   background-color: rgba(0,0,0,0.7);
@@ -38,12 +45,23 @@ html, body {
   top: 0;
   left: 0;
 }
+
 #hotpot {
   transform-origin: bottom;
   transition: transform 0.1s;
   width: 100%;
   height: 75vh; 
 }
+
 #score {
   margin-top: 20px;
+}
+
+.form-check-input {
+  margin-right: 0.5em !important;
+  float: none !important;
+}
+
+.fas {
+  z-index: -1;
 }
