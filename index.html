@@ -83,7 +83,7 @@
                 </button>
                 </div>
               <div class="col-4">
-                <button type="button" id="gyroscope1" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                <button type="button" id="gyroscope" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
                   <span class="material-icons">screen_rotation</span>
                   <br>
                   陀螺儀
@@ -132,7 +132,7 @@
                 </button>
               </div>
               <div class="col-4">
-                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2;window.alert('????')" :class="{'border border-3': control === 2}">
+                <button type="button" id="gyroscope" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
                   <span class="material-icons">screen_rotation</span>
                   <br>
                   陀螺儀
@@ -183,11 +183,7 @@
   <script src="https://unpkg.com/@vueuse/core"></script>
   <script src="./js/app.js"></script>
   <script>
-    
-
-    document.getElementById('gyroscope1').addEventListener('click', function () {
-
-      
+    document.getElementById('gyroscope').addEventListener('click', function () {
         DeviceOrientationEvent.requestPermission().then(response => {
             // This is showing "denied" without showing any permission popup
             console.log(response)
@@ -195,7 +191,6 @@
 
         }).catch(console.error)
     });
-
 </script>
 </body>
 </html>
