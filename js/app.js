@@ -23,11 +23,11 @@ const app = Vue.createApp({
     // 1 = easy
     // 2 = very easy
     const difficulty = ref(0)
+    const enableOrientation = ref(true)
+    const dateYear = ref(new Date().getFullYear())
 
     const mouse = reactive(useMouse())
     const device = reactive(useDeviceOrientation())
-
-    const dateYear = ref(new Date().getFullYear())
 
     const restart = (retry) => {
       userinput.value = 5
@@ -57,6 +57,11 @@ const app = Vue.createApp({
         audio.loop = true
         audio.play()
       }
+    }
+
+    const grantDeviceOrientationEvent = async () => {
+      const v = await window.DeviceOrientationEvent.requestPermission()
+      return v === 'granted';
     }
 
     watch(mouse, value => {
@@ -125,6 +130,12 @@ const app = Vue.createApp({
           angle.value += positive ? wind : wind*-1
         }
       }, 1000/60)
+
+      if (window.DeviceOrientationEvent && window.DeviceOrientationEvent.requestPermission) {
+        grantDeviceOrientationEvent().then(v => {
+          enableOrientation.value = v
+        })
+      }
     })
 
     return {
@@ -140,7 +151,8 @@ const app = Vue.createApp({
       mouse,
       device,
       dateYear,
-      difficulty
+      difficulty,
+      enableOrientation,
     }
   }
 }).mount('#app')
