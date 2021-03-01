@@ -9,6 +9,7 @@
     gtag('js', new Date());
 
     gtag('config', 'G-WKZ4GFL55N');
+
   </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,7 +83,7 @@
                 </button>
                 </div>
               <div class="col-4">
-                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}" :disabled="enableOrientation === false">
                   <span class="material-icons">screen_rotation</span>
                   <br>
                   陀螺儀
@@ -131,7 +132,7 @@
                 </button>
               </div>
               <div class="col-4">
-                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}">
+                <button type="button" class="btn btn-primary w-100" value="陀螺儀" @click="control = 2" :class="{'border border-3': control === 2}" :disabled="enableOrientation === false">
                   <span class="material-icons">screen_rotation</span>
                   <br>
                   陀螺儀
@@ -149,7 +150,7 @@
                 </p>
               </div>
               <div class="col-12">
-                <input type="button" value="非常簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
+                <input type="button" value="超級簡單" class="btn btn-success" @click="difficulty = 2" :class="{'border border-3': difficulty === 2, 'mx-2': true}">
                 <input type="button" value="簡單" class="btn btn-primary" @click="difficulty = 1" :class="{'border border-3': difficulty === 1, 'mx-2': true}">
                 <input type="button" value="困難" class="btn btn-danger" @click="difficulty = 0" :class="{'border border-3': difficulty === 0, 'mx-2': true}">
               </div>
@@ -162,6 +163,7 @@
               &copy; {{ dateYear }}
               Made with ❤ by 
               <a target="_blank" href="https://github.com/rogeraabbccdd" class="text-white">Kento</a>
+              
             </p>
             <br>
             <a target="_blank" href="https://github.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/fork">
