@@ -29,7 +29,7 @@ const app = Vue.createApp({
     const mouse = reactive(useMouse())
     const device = reactive(useDeviceOrientation())
     const dateYear = ref(new Date().getFullYear())
-    const playAudio = (audio, src, repeat = false) => {
+    const playAudio = (src, repeat = false) => {
       audio.currentTime = 0
       audio.src = src
       audio.loop = repeat
