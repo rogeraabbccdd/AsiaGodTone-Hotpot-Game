@@ -145,3 +145,17 @@ const app = Vue.createApp({
   }
 }).mount('#app')
 
+document.getElementById('gyroscope').addEventListener('click', function () {
+  DeviceOrientationEvent.requestPermission().then(response => {
+    // This is showing "denied" without showing any permission popup
+    console.log(response)
+  }).catch(console.error)
+})
+
+document.getElementById('gyroscope1').addEventListener('click', function () {
+  DeviceOrientationEvent.requestPermission().then(response => {
+    // This is showing "denied" without showing any permission popup
+    console.log(response)
+  }).catch(console.error)
+});
+

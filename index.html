@@ -188,23 +188,5 @@
   <script src="https://unpkg.com/@vueuse/shared"></script>
   <script src="https://unpkg.com/@vueuse/core"></script>
   <script src="./js/app.js"></script>
-  <script>
-    document.getElementById('gyroscope').addEventListener('click', function () {
-        DeviceOrientationEvent.requestPermission().then(response => {
-            // This is showing "denied" without showing any permission popup
-            console.log(response)
-            
-
-        }).catch(console.error)
-    });
-    document.getElementById('gyroscope1').addEventListener('click', function () {
-        DeviceOrientationEvent.requestPermission().then(response => {
-            // This is showing "denied" without showing any permission popup
-            console.log(response)
-            
-
-        }).catch(console.error)
-    });
-</script>
 </body>
 </html>
