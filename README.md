@@ -15,3 +15,9 @@
 <a href="https://raw.githubusercontent.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/master/gnn.png">
   <img src="https://raw.githubusercontent.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/master/gnn.png" width="300">
 </a>
+<a href="https://raw.githubusercontent.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/master/android.png">
+  <img src="https://raw.githubusercontent.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/master/android.png" width="300">
+</a>
+<a href="https://raw.githubusercontent.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/master/shame.jpg">
+  <img src="https://raw.githubusercontent.com/rogeraabbccdd/AsiaGodTone-Hotpot-Game/master/shame.jpg" width="300">
+</a>
